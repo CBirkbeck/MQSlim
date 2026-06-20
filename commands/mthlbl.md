@@ -113,9 +113,17 @@ right form takes thorough investigation every time. There is no quick mode.
    - `NO-composable-from-mathlib`
    - `BORDERLINE-needs-human` (with numbered questions)
 
-   **For YES** verdicts: rationale must name the specific mathlib gap /
+   **For YES-add-as-is**: rationale must name the specific mathlib gap /
    TODO / missing-API anchor (not just "searched, didn't find"); propose
    PR location + grouping.
+   **For YES-but-generalise-first**: positive evidence required — a
+   specific named hypothesis/typeclass to drop AND a successful Phase-4
+   mechanical-weakening verification (the proof actually compiles
+   without it). "Looks specialised" / "literature is more general" is
+   NOT sufficient; the most over-produced false positive is firing this
+   verdict on something that's actually MAXIMALLY GENERAL (every
+   hypothesis used). Route elsewhere on the five false-positive classes
+   in `references/mathlibable-buckets.md § False-positive routing`.
    **For NO** verdicts: rationale must give the concrete refactor plan
    keyed to the K call sites at refactor-actionable detail (the exact
    mathlib decl to call, or the composition sketch ≤3 lines).

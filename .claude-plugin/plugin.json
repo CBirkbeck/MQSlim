@@ -1,6 +1,6 @@
 {
   "name": "mqslim",
-  "version": "0.51.0",
+  "version": "0.52.0",
   "description": "Slim shadow of mathlib-quality — same goals, minimal instructions, trusts frontier-model judgement",
   "author": {
     "name": "CBirkbeck"

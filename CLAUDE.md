@@ -15,7 +15,7 @@ specifics rather than execute a checklist.
 
 ## Current Status
 
-**Version:** 0.51.0 (parallels mathlib-quality v0.51.0)
+**Version:** 0.52.0 (parallels mathlib-quality v0.52.0)
 
 ### Shipped commands (slim)
 

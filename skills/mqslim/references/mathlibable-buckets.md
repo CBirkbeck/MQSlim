@@ -27,7 +27,8 @@ The declaration is novel for mathlib at the right generality + non-trivial
 ## `YES-but-generalise-first`
 
 Novel in some form, but the user's form is strictly narrower than what
-should be shipped. Two reasons:
+should be shipped AND the generalisation is mechanically reachable.
+Two reasons:
 
 - **LITERATURE-WEAKENING**: Phase 4 found the user's form strictly
   narrower than the literature-standard form.
@@ -37,17 +38,37 @@ should be shipped. Two reasons:
   blocked. "Looks cooler in category theory" is not enough; the rationale
   must point at concrete downstream API improvements.
 
-**Evidence required:**
+**Evidence required (positive — "looks droppable" is not enough):**
+- A specific named hypothesis/typeclass to drop or weaken.
+- The Phase-4 mechanical-weakening attempt MUST have actually succeeded
+  (`lean_diagnostic_messages` clean after the proposed weakening
+  applied). A proposal the proof actually depends on is not evidence
+  of generalisability.
 - Lit search identifying the more-general form (LITERATURE-WEAKENING)
   OR Q8 / Q1–Q7 firing with a specific restatement (MODERN-IDIOM).
-- Generality analysis with the restatement spelled out as a Lean
-  signature.
 - Mathlib search on BOTH the user's form AND the generalised form (no
   hit on either).
 - Cost: CHEAP / MODERATE / EXPENSIVE. **NOT a verdict downgrade** —
   expensive generalisations are explicitly worth doing.
 - Next action: run `/genrlz <decl>` to make the change with the
   literature + modern-idiom targets in mind.
+
+**Five false-positive classes — route ELSEWHERE if any apply:**
+
+1. **Already maximally general** — every hypothesis used (e.g.
+   `[CommRing R]` with subtraction in proof; cannot weaken to
+   `[CommSemiring R]`). → `YES-add-as-is` / `NO-composable`.
+2. **Concrete, no type variable** — about a specific object (e.g.
+   `ℤ_[p]`, `Real.pi`); "generalising" = re-developing machinery,
+   not a one-edit weakening. → `YES-add-as-is` / `NO-mathlib-has-it`.
+3. **All instance hypotheses used** (e.g. `[CompleteSpace L]` needed
+   for series convergence). → same as class 1.
+4. **General form already in mathlib** (e.g. user has a `n = 2` case of
+   an existing mathlib lemma). → `NO-mathlib-has-it`.
+5. **Real but not a single mechanical edit** — generalising threads a
+   foundational def through multiple files / changes public API.
+   `YES-but-generalise-first` is for one-edit weakenings; multi-file
+   refactors → `BORDERLINE-needs-human` with a dev-ticket question.
 
 ## `NO-mathlib-has-it`
 
