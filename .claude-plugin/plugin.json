@@ -1,0 +1,11 @@
+{
+  "name": "mqslim",
+  "version": "0.51.0",
+  "description": "Slim shadow of mathlib-quality — same goals, minimal instructions, trusts frontier-model judgement",
+  "author": {
+    "name": "CBirkbeck"
+  },
+  "repository": "https://github.com/CBirkbeck/MQSlim",
+  "license": "MIT",
+  "keywords": ["lean4", "mathlib", "code-quality", "slim", "shadow"]
+}
