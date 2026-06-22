@@ -60,20 +60,84 @@ over-specification.
 
 ## Installation
 
-As a Claude Code plugin:
+### Option 1: Claude Code plugin marketplace (recommended)
+
+From within Claude Code:
 
 ```
-/plugins
-# add the MQSlim entry pointing at this repo
+/plugin marketplace add CBirkbeck/MQSlim
+/plugin install mqslim
 ```
 
-Or place the repo under `~/.claude/plugins/` and Claude Code will pick
-it up.
+The first command tells Claude Code to read the `marketplace.json` at
+the repo root and discover the plugins it offers; the second installs
+the `mqslim` plugin specifically.
+
+To pair with the full-fat mathlib-quality (recommended — see
+"How it pairs" above):
+
+```
+/plugin marketplace add CBirkbeck/mathlib-quality
+/plugin install mathlib-quality
+```
+
+Both load together; the abbreviated `/clnup`-family commands coexist
+with the full-name `/cleanup`-family commands. Type whichever you want
+per task.
+
+If you also want the Lean 4 theorem-proving workflows the cleanup
+commands integrate with:
+
+```
+/plugin marketplace add cameronfreer/lean4-skills
+/plugin install lean4
+```
+
+Restart Claude Code after installation. Verify by typing `/` and
+checking that `/clnup`, `/mthlbl`, `/devel`, `/bstmode`, `/decoproof`
+appear in the command list.
+
+### Option 2: Local clone
+
+```bash
+git clone https://github.com/CBirkbeck/MQSlim.git
+```
+
+Then from Claude Code:
+
+```
+/plugin marketplace add /absolute/path/to/MQSlim
+/plugin install mqslim
+```
+
+(The local path must be the directory containing
+`.claude-plugin/marketplace.json`.)
+
+### Verifying the install
+
+After installation, in a Lean project session, type `/clnup` and start
+typing a filename — autocomplete should suggest the `.lean` files in
+your project. If `/clnup` is unknown, the install didn't pick up; try
+`/plugin list` to see what's loaded.
+
+### Prerequisites
+
+MQSlim only ships skill files; it has no runtime dependencies. But the
+commands themselves rely on:
+
+- **Lean LSP MCP server** — nearly all commands use `lean_diagnostic_messages`,
+  `lean_goal`, `lean_loogle`, etc. for sub-second feedback. Set up via
+  [`oOo0oOo/lean-lsp-mcp`](https://github.com/oOo0oOo/lean-lsp-mcp);
+  full instructions are in
+  [mathlib-quality's README](https://github.com/CBirkbeck/mathlib-quality#lean-lsp-mcp-server-highly-recommended).
+
+- **ChatGPT MCP server** (optional, used by `/mthlbl`'s literature
+  search) — same setup as for mathlib-quality. See
+  [the full-fat README](https://github.com/CBirkbeck/mathlib-quality#optional-chatgpt-mcp-server).
 
 ## Status
 
-**Version:** 0.51.0 (parallels mathlib-quality v0.51.0 at the time of
-MQSlim's creation).
+**Version:** 0.52.0 (parallels mathlib-quality v0.52.0).
 
 ## Acknowledgements
 
