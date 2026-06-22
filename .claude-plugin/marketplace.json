@@ -1,0 +1,16 @@
+{
+  "name": "mqslim-plugins",
+  "owner": {
+    "name": "CBirkbeck"
+  },
+  "plugins": [
+    {
+      "name": "mqslim",
+      "source": "./",
+      "description": "Slim shadow of mathlib-quality — same workflows, minimal instructions, trusts frontier-model judgement",
+      "version": "0.52.0",
+      "repository": "https://github.com/CBirkbeck/MQSlim",
+      "keywords": ["lean4", "mathlib", "code-quality", "slim", "shadow"]
+    }
+  ]
+}
